@@ -6,7 +6,7 @@ import SimpleITK as sitk
 import numpy as np
 import random
 from matplotlib import pyplot as plt
-
+import time
 
 def resize_image_itk_1(itkimage, newSpacing=None, newSize=None, newfactor=None, resamplemethod=sitk.sitkLinear):
     resampler = sitk.ResampleImageFilter()
@@ -196,13 +196,10 @@ def read_dicom_series(dicom_folder):
     return image
 
 
-def bias_field_correct(f, f2):
+def bias_field_correct(f):
     image1 = read_dicom_series(f)
-    image2 = read_dicom_series(f2)
-
     # Ensure the images are of float type
     image1 = sitk.Cast(image1, sitk.sitkFloat32)
-    image2 = sitk.Cast(image2, sitk.sitkFloat32)
 
     # Apply N4 Bias Field Correction to the first image
     corrector = sitk.N4BiasFieldCorrectionImageFilter()
@@ -212,9 +209,8 @@ def bias_field_correct(f, f2):
 
     tic = time.time()
     corrected_image1 = corrector.Execute(image1)
-    corrected_image2 = corrector.Execute(image2)
-    return corrected_image1, corrected_image2
+    print(time.time()-tic)
+    return corrected_image1
 
 # dict
-f, f2 = fdict[fid]
-corrected_image1, corrected_image2 = bias_field_correct(f, f2)
+corrected_image1 = bias_field_correct(nii_path)
