@@ -165,7 +165,7 @@ class ConvTransBlock(nn.Module):
 
 class SCUNet(nn.Module):
 
-    def __init__(self, in_nc=3, config=[2,2,2,2,2,2,2], dim=64, drop_path_rate=0.0, input_resolution=256):
+    def __init__(self, in_nc=1, config=[2,2,2,2,2,2,2], dim=64, drop_path_rate=0.0, input_resolution=256):
         super(SCUNet, self).__init__()
         self.config = config
         self.dim = dim

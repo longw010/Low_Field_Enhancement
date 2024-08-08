@@ -1,36 +1,43 @@
-# Low Field Enhancement (TODO: update the project name to the paper's name)
+# Quantitative Ischemic Lesions of Portable Low-Field-Strength MRI Using Deep Learning-Based Super-Resolution
 
-[ArXiv Paper][Demo][Published Paper]
+## Brief
+This is the official implementation of `Quantitative Ischemic Lesions of Portable Low-Field-Strength MRI Using Deep Learning-Based Super-Resolution`. 
 
-This project utilizes the SCUNet (Swin-Conv-UNet) denoising network to enhance low field images, making them comparable to high field images. The project is for research purposes only and cannot be used for commercial purposes
-
-
-
-The data pair synthesis and image enhancement pipeline 
-----------
+This project utilizes the SCUNet (Swin-Conv-UNet) denoising network to enhance low field images, making them comparable to high field images. The project is for research purposes only and cannot be used for commercial purposes.
 
 <img src="figs/Fig1.png" width="900px"/>
 
+## Dependencies
+- Python 3.8
+- PyTorch 1.7
+- NVIDIA GPU+[CUDA>11.3](https://developer.nvidia.com/cuda-downloads)
 
-*New data synthesis pipeline for real image denoising*: For a high quality image, a randomly shuffled
-degradation sequence is performed to produce a noisy image. Meanwhile, the resizing and reverse-forward tone mapping are performed
-to produce a corresponding clean image. A paired noisy/clean training patches are then cropped for training deep blind denoising model.
+## Usage 
+### Environment
+```
+pip install -r requirements.txt
+```
 
+### Data Preparation
+```
+ src/data_util.py
+ ```
 
-*Swin-Conv-UNet(SCUNet) denoising network*  The SCUNet model utilized the swin-conv (SC) block as the primary component of a UNet backbone, combining the advantages of residual convolution and transformer mechanisms to enhance both local and non-local modeling. The first step is to pretrain the SCUNet model using the pretraining dataset including MRI images from 966 subjects, which is showed at the upper half of the figure (inside the red dotted line). The pretrained SCUNet model was finetuned using small-scale paired LF-MRI and HF-MRI images at the second step (inside the purple dotted line). The mobile LF-MRI images were inputted into the pretrained SCUNet model to generate SynthMRI images. The blue border highlights the forward propagation stage of the SCUNet model. The loss function of L1 and structural similarity index (SSIM) were applied to train and finetune the SCUNet model (with green border).
+### Training / Resume Training
+```
+python main.py --data_dir $DATA_DIR$ --model $MODEL$ --save $SAVE_DIR$
+```
+### Test/Evaluation
+```
+python main.py --data_dir ~/srdata --save ../experiments --data_test batch1 --model SCUNET --pre_train ../demo.pt --test_only --save_results
+```
 
+## Results
+For more in-depth results, please refer to the detailed discussion in the paper.
+<img src="figs/Fig2.png" width="900px"/>
 
-Running Environment and Reproduction
-----------
-Python 3.8 and PyTorch 1.7
+## Acknowledge
+The code is built on [SCUNet](https://github.com/cszn/SCUNet), [DAT](https://github.com/zhengchen1999/DAT/tree/main?tab=readme-ov-file).
 
-Preprocessing scripts: src/data_util.py
-Training scripts: scr
-Inference script: 
-
-
-Side note
-----------
-The project is for research purposes only and cannot be used for commercial purposes.
-Please cite 
-TODO: paper name 
+## Contact
+Please feel free to raise an issue on GitHub if you have any questions. 
