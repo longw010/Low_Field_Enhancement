@@ -46,4 +46,4 @@ Left: the PMRI image as input; Right: the SynthMRI image as output
 The code is built on [SCUNet](https://github.com/cszn/SCUNet), [DAT](https://github.com/zhengchen1999/DAT/tree/main?tab=readme-ov-file).
 
 ## Contact
-If you have any questions, please open an issue on GitHub, and we'll get back to you promptly.
+If you have any questions, please open an [issue](https://github.com/longw010/Low_Field_Enhancement/issues), and we'll get back to you promptly.
