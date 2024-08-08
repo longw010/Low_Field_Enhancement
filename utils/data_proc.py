@@ -1,3 +1,7 @@
+from scipy.ndimage import zoom
+import glob
+import os
+import time
 import SimpleITK as sitk
 import numpy as np
 import random
@@ -182,3 +186,35 @@ def get_aug_crops(center, shift, aug_step, aug_count=1, aug_index=(1,), aug_mode
         aug_crops = [center]
         count_of_augs = 1
     return aug_crops, count_of_augs
+
+
+def read_dicom_series(dicom_folder):
+    reader = sitk.ImageSeriesReader()
+    dicom_series = reader.GetGDCMSeriesFileNames(dicom_folder)
+    reader.SetFileNames(dicom_series)
+    image = reader.Execute()
+    return image
+
+
+def bias_field_correct(f, f2):
+    image1 = read_dicom_series(f)
+    image2 = read_dicom_series(f2)
+
+    # Ensure the images are of float type
+    image1 = sitk.Cast(image1, sitk.sitkFloat32)
+    image2 = sitk.Cast(image2, sitk.sitkFloat32)
+
+    # Apply N4 Bias Field Correction to the first image
+    corrector = sitk.N4BiasFieldCorrectionImageFilter()
+    corrector.SetMaximumNumberOfIterations([50, 50, 30, 20])
+    corrector.SetConvergenceThreshold(1e-4)
+    corrector.SetNumberOfControlPoints([4, 4, 4])
+
+    tic = time.time()
+    corrected_image1 = corrector.Execute(image1)
+    corrected_image2 = corrector.Execute(image2)
+    return corrected_image1, corrected_image2
+
+# dict
+f, f2 = fdict[fid]
+corrected_image1, corrected_image2 = bias_field_correct(f, f2)

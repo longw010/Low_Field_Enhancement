@@ -15,21 +15,25 @@ This project utilizes the SCUNet (Swin-Conv-UNet) denoising network to enhance l
 ## Usage 
 ### Environment
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### Data Preparation
 ```
- src/data_util.py
- ```
+python3 utils/data_proc.py
+```
+- bias field correction
+- image degradation 
+
+We also used synthstrip(from [FreeSurfer](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/)) to run skull stripping.
 
 ### Training / Resume Training
 ```
-python main.py --data_dir $DATA_DIR$ --model $MODEL$ --save $SAVE_DIR$
+python3 main.py --data_dir $DATA_DIR$ --model $MODEL$ --save $SAVE_DIR$
 ```
 ### Test/Evaluation
 ```
-python main.py --data_dir ~/srdata --save ../experiments --data_test batch1 --model SCUNET --pre_train ../demo.pt --test_only --save_results
+python3 main.py --data_dir ~/srdata --save ../experiments --data_test batch1 --model SCUNET --pre_train ../demo.pt --test_only --save_results
 ```
 
 ## Results
