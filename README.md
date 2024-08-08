@@ -33,15 +33,17 @@ python3 main.py --data_dir $DATA_DIR$ --model $MODEL$ --save $SAVE_DIR$
 ```
 ### Test/Evaluation
 ```
-python3 main.py --data_dir ~/srdata --save ../experiments --data_test batch1 --model SCUNET --pre_train ../demo.pt --test_only --save_results
+python3 main.py --data_dir $DATA_DIR$ --save $SAVE_DIR$ --data_test batch1 --model SCUNET --pre_train ../demo.pt --test_only --save_results
 ```
 
 ## Results
 For more in-depth results, please refer to the detailed discussion in the paper.
+
 <img src="figs/Fig2.png" width="900px"/>
+Left: the PMRI image as input; Right: the SynthMRI image as output
 
 ## Acknowledge
 The code is built on [SCUNet](https://github.com/cszn/SCUNet), [DAT](https://github.com/zhengchen1999/DAT/tree/main?tab=readme-ov-file).
 
 ## Contact
-Please feel free to raise an issue on GitHub if you have any questions. 
+If you have any questions, please open an issue on GitHub, and we'll get back to you promptly.
