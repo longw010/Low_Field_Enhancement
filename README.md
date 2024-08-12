@@ -28,6 +28,7 @@ Left: the simulated image(after downsampling and adding rician noise) as input; 
 #### Phase 2
 
 Phase 2 applied the operations below on the two series(one is acquired from the LF-MRI, and another is acquired from the HF-MRI). 
+- ANTs for registration
 - bias field correction (SimpleITK N4 Bias Field)
 - skull stripping (from [FreeSurfer](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/)) 
 
@@ -48,6 +49,7 @@ python3 main.py --data_dir $DATA_DIR$ --save $SAVE_DIR$ --data_test batch1 --mod
 For more in-depth results, please refer to the detailed discussion in the paper.
 
 <img src="figs/Fig2.png" width="900px"/>
+
 Left: the PMRI image as input; Right: the SynthMRI image as output
 
 ## Acknowledge
