@@ -19,13 +19,21 @@ pip3 install -r requirements.txt
 ```
 
 ### Data Preparation
+#### Phase 1
+Please direct to the pretrain_simulation folder for more details.
+
+<img src="figs/Fig4.png" width="900px"/>
+
+Left: the simulated image(after downsampling and adding rician noise) as input; Right: the acquired HR images
+#### Phase 2
+
+Phase 2 applied the operations below on the two series(one is acquired from the LF-MRI, and another is acquired from the HF-MRI). 
+- bias field correction (SimpleITK N4 Bias Field)
+- skull stripping (from [FreeSurfer](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/)) 
+
 ```
 python3 utils/data_proc.py
 ```
-- bias field correction
-- image degradation 
-
-We also used synthstrip(from [FreeSurfer](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/)) to run skull stripping.
 
 ### Training / Resume Training
 ```
@@ -43,7 +51,7 @@ For more in-depth results, please refer to the detailed discussion in the paper.
 Left: the PMRI image as input; Right: the SynthMRI image as output
 
 ## Acknowledge
-The code is built on [SCUNet](https://github.com/cszn/SCUNet), [DAT](https://github.com/zhengchen1999/DAT/tree/main?tab=readme-ov-file).
+The code is built on [SCUNet](https://github.com/cszn/SCUNet), [DAT](https://github.com/zhengchen1999/DAT/tree/main?tab=readme-ov-file). Special thanks to [FastMRI](https://github.com/facebookresearch/fastMRI).
 
 ## Contact
 If you have any questions, please open an [issue](https://github.com/longw010/Low_Field_Enhancement/issues), and we'll get back to you promptly.
