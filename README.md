@@ -4,7 +4,7 @@
 ## Brief
 This is the official implementation of `Quantitative Ischemic Lesions of Portable Low-Field-Strength MRI Using Deep Learning-Based Super-Resolution`. This project utilizes the Swin-Conv-UNet (SCUNet) denoising network to enhance low field images, making them comparable to high field images. 
 
-In this repository, we are committed to following the *Checklist for Artificial Intelligence in Medical Imaging(CLAIM) 2024 Update* to guide our work and practices. By adhering to these guidelines, we aim to contribute to the scientific community with robust and reliable research outputs. Note that the project is for research purposes only. If you intend to use it for any commercial purposes, please contact the authors.
+In this repository, we are committed to following the *[Checklist for Artificial Intelligence in Medical Imaging(CLAIM) 2024 Update](https://pubs.rsna.org/doi/epdf/10.1148/ryai.240300)* to guide our work and practices. By adhering to these guidelines, we aim to contribute to the scientific community with robust and reliable research outputs. Note that the project is for research purposes only. If you intend to use it for any commercial purposes, please contact the authors.
 
 <img src="figs/Fig1.png" width="900px"/>
 
